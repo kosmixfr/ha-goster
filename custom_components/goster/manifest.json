@@ -1,0 +1,13 @@
+{
+  "domain": "goster",
+  "name": "Goster",
+  "codeowners": ["@kosmixfr"],
+  "config_flow": true,
+  "documentation": "https://github.com/kosmixfr/ha-goster",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/kosmixfr/ha-goster/issues",
+  "loggers": ["custom_components.goster"],
+  "requirements": [],
+  "version": "1.0.0"
+}

@@ -1,0 +1,121 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connexion à Goster",
+        "description": "Saisissez l'URL de votre serveur Goster et le token d'un utilisateur Goster. Un token administrateur débloque les capteurs CPU, mémoire, réseau et disques.",
+        "data": {
+          "base_url": "URL de Goster",
+          "token": "Token API"
+        },
+        "data_description": {
+          "base_url": "Par exemple https://goster.example.com",
+          "token": "Disponible dans les paramètres de votre utilisateur Goster"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Réauthentification Goster",
+        "description": "Le token pour {base_url} n'est plus valide. Saisissez un nouveau token.",
+        "data": {
+          "token": "Token API"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de joindre le serveur Goster.",
+      "invalid_auth": "Le token Goster a été refusé.",
+      "invalid_response": "Le serveur Goster a renvoyé une réponse inattendue.",
+      "invalid_token": "Le token ne peut pas être vide.",
+      "invalid_url": "Saisissez une URL HTTP ou HTTPS valide.",
+      "unknown": "Erreur inattendue."
+    },
+    "abort": {
+      "already_configured": "Ce compte Goster est déjà configuré.",
+      "reauth_successful": "La réauthentification a réussi."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options Goster",
+        "description": "Réglez la fréquence d'interrogation de Goster et l'interface réseau utilisée pour les capteurs de débit.",
+        "data": {
+          "scan_interval": "Intervalle de mise à jour (secondes)",
+          "network_interface": "Interface réseau"
+        },
+        "data_description": {
+          "network_interface": "Laisser vide pour la détection automatique (tun0, puis eth0)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "movies": {
+        "name": "Films"
+      },
+      "series": {
+        "name": "Séries"
+      },
+      "episodes": {
+        "name": "Épisodes"
+      },
+      "files": {
+        "name": "Fichiers"
+      },
+      "library_size": {
+        "name": "Taille de la bibliothèque"
+      },
+      "torrents": {
+        "name": "Torrents"
+      },
+      "users": {
+        "name": "Utilisateurs"
+      },
+      "uptime": {
+        "name": "Durée de fonctionnement"
+      },
+      "active_downloads": {
+        "name": "Téléchargements actifs"
+      },
+      "pending_requests": {
+        "name": "Demandes en attente"
+      },
+      "active_shares": {
+        "name": "Partages actifs"
+      },
+      "cpu_usage": {
+        "name": "Utilisation CPU"
+      },
+      "memory_usage": {
+        "name": "Utilisation mémoire"
+      },
+      "load_1m": {
+        "name": "Charge (1 min)"
+      },
+      "network_download": {
+        "name": "Débit descendant"
+      },
+      "network_upload": {
+        "name": "Débit montant"
+      },
+      "disk_read": {
+        "name": "Lecture disque"
+      },
+      "disk_write": {
+        "name": "Écriture disque"
+      },
+      "active_transcodes": {
+        "name": "Transcodages actifs"
+      },
+      "public_ipv4": {
+        "name": "IPv4 publique"
+      }
+    },
+    "binary_sensor": {
+      "bittorrent_reachable": {
+        "name": "BitTorrent joignable"
+      }
+    }
+  }
+}

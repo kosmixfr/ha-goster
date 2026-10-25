@@ -1,0 +1,121 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Goster",
+        "description": "Enter the URL of your Goster server and the API token of a Goster user. An admin token unlocks CPU, memory, network and disk sensors.",
+        "data": {
+          "base_url": "Goster URL",
+          "token": "API token"
+        },
+        "data_description": {
+          "base_url": "For example https://goster.example.com",
+          "token": "Found in your Goster user settings"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate Goster",
+        "description": "The token for {base_url} is no longer valid. Enter a new token.",
+        "data": {
+          "token": "API token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to the Goster server.",
+      "invalid_auth": "The Goster token was rejected.",
+      "invalid_response": "The Goster server returned an unexpected response.",
+      "invalid_token": "The token cannot be empty.",
+      "invalid_url": "Enter a valid HTTP or HTTPS URL.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This Goster account is already configured.",
+      "reauth_successful": "Re-authentication was successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Goster options",
+        "description": "Adjust how often Home Assistant polls Goster and which network interface is used for the speed sensors.",
+        "data": {
+          "scan_interval": "Update interval (seconds)",
+          "network_interface": "Network interface"
+        },
+        "data_description": {
+          "network_interface": "Leave empty to auto-detect (tun0, then eth0)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "movies": {
+        "name": "Movies"
+      },
+      "series": {
+        "name": "Series"
+      },
+      "episodes": {
+        "name": "Episodes"
+      },
+      "files": {
+        "name": "Files"
+      },
+      "library_size": {
+        "name": "Library size"
+      },
+      "torrents": {
+        "name": "Torrents"
+      },
+      "users": {
+        "name": "Users"
+      },
+      "uptime": {
+        "name": "Uptime"
+      },
+      "active_downloads": {
+        "name": "Active downloads"
+      },
+      "pending_requests": {
+        "name": "Pending requests"
+      },
+      "active_shares": {
+        "name": "Active shares"
+      },
+      "cpu_usage": {
+        "name": "CPU usage"
+      },
+      "memory_usage": {
+        "name": "Memory usage"
+      },
+      "load_1m": {
+        "name": "Load (1 min)"
+      },
+      "network_download": {
+        "name": "Download speed"
+      },
+      "network_upload": {
+        "name": "Upload speed"
+      },
+      "disk_read": {
+        "name": "Disk read speed"
+      },
+      "disk_write": {
+        "name": "Disk write speed"
+      },
+      "active_transcodes": {
+        "name": "Active transcodes"
+      },
+      "public_ipv4": {
+        "name": "Public IPv4"
+      }
+    },
+    "binary_sensor": {
+      "bittorrent_reachable": {
+        "name": "BitTorrent reachable"
+      }
+    }
+  }
+}

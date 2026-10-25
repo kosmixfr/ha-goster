@@ -81,7 +81,7 @@ class GosterCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             return data
         except GosterAuthError as err:
             raise ConfigEntryAuthFailed(str(err)) from err
-        except GosterConnectionError as err:
+        except (GosterConnectionError, GosterApiError) as err:
             raise UpdateFailed(str(err)) from err
 
     @property

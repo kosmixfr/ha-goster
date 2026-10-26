@@ -5,11 +5,11 @@
         "title": "Connect to Goster",
         "description": "Enter the URL of your Goster server and the API token of a Goster user. An admin token unlocks CPU, memory, network and disk sensors.",
         "data": {
-          "base_url": "Goster URL",
+          "app_url": "Goster URL",
           "token": "API token"
         },
         "data_description": {
-          "base_url": "For example https://goster.example.com",
+          "app_url": "For example https://goster.example.com",
           "token": "Found in your Goster user settings"
         }
       },

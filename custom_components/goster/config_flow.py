@@ -19,11 +19,10 @@ from .api import (
     GosterConnectionError,
 )
 from .const import (
-    CONF_BASE_URL,
+    CONF_APP_URL,
     CONF_NETWORK_INTERFACE,
     CONF_SCAN_INTERVAL,
     CONF_TOKEN,
-    DEFAULT_BASE_URL,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
     LOGGER_NAME,
@@ -34,7 +33,7 @@ from .const import (
 LOGGER = logging.getLogger(LOGGER_NAME)
 
 
-def _normalize_base_url(value: str) -> str:
+def _normalize_app_url(value: str) -> str:
     """Normalize a user supplied Goster URL."""
     value = value.strip().rstrip("/")
     if "://" not in value:
@@ -60,7 +59,7 @@ async def _async_validate(hass: HomeAssistant, base_url: str, token: str) -> dic
 class GosterConfigFlow(ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Goster."""
 
-    VERSION = 1
+    VERSION = 2
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
@@ -69,16 +68,16 @@ class GosterConfigFlow(ConfigFlow, domain=DOMAIN):
         errors: dict[str, str] = {}
 
         if user_input is not None:
-            base_url = _normalize_base_url(user_input[CONF_BASE_URL])
+            app_url = _normalize_app_url(user_input[CONF_APP_URL])
             token = user_input[CONF_TOKEN].strip()
 
-            if not _url_is_valid(base_url):
-                errors[CONF_BASE_URL] = "invalid_url"
+            if not _url_is_valid(app_url):
+                errors[CONF_APP_URL] = "invalid_url"
             elif not token:
                 errors[CONF_TOKEN] = "invalid_token"
             else:
                 try:
-                    me = await _async_validate(self.hass, base_url, token)
+                    me = await _async_validate(self.hass, app_url, token)
                 except GosterAuthError:
                     errors["base"] = "invalid_auth"
                 except GosterConnectionError:
@@ -89,7 +88,7 @@ class GosterConfigFlow(ConfigFlow, domain=DOMAIN):
                     LOGGER.exception("Unexpected error while validating Goster")
                     errors["base"] = "unknown"
                 else:
-                    host = urlparse(base_url).netloc.lower()
+                    host = urlparse(app_url).netloc.lower()
                     await self.async_set_unique_id(f"{host}:{me.get('id', 'unknown')}")
                     self._abort_if_unique_id_configured()
 
@@ -97,14 +96,14 @@ class GosterConfigFlow(ConfigFlow, domain=DOMAIN):
                     title = f"Goster - {username}" if username else f"Goster - {host}"
                     return self.async_create_entry(
                         title=title,
-                        data={CONF_BASE_URL: base_url, CONF_TOKEN: token},
+                        data={CONF_APP_URL: app_url, CONF_TOKEN: token},
                     )
 
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
                 {
-                    vol.Required(CONF_BASE_URL, default=DEFAULT_BASE_URL): str,
+                    vol.Required(CONF_APP_URL): str,
                     vol.Required(CONF_TOKEN): selector.TextSelector(
                         selector.TextSelectorConfig(
                             type=selector.TextSelectorType.PASSWORD
@@ -132,7 +131,7 @@ class GosterConfigFlow(ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             token = user_input[CONF_TOKEN].strip()
             try:
-                await _async_validate(self.hass, entry.data[CONF_BASE_URL], token)
+                await _async_validate(self.hass, entry.data[CONF_APP_URL], token)
             except GosterAuthError:
                 errors["base"] = "invalid_auth"
             except GosterConnectionError:
@@ -162,7 +161,7 @@ class GosterConfigFlow(ConfigFlow, domain=DOMAIN):
                 }
             ),
             description_placeholders={
-                CONF_BASE_URL: entry.data[CONF_BASE_URL],
+                CONF_APP_URL: entry.data[CONF_APP_URL],
             },
             errors=errors,
         )

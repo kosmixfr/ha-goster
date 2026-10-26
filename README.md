@@ -1,7 +1,6 @@
 # Goster pour Home Assistant
 
-Intégration Home Assistant pour surveiller un serveur [Goster](https://goster.example.com)
-via son API HTTP.
+Intégration Home Assistant pour surveiller un serveur Goster via son API HTTP.
 
 ## Fonctionnalités
 
@@ -23,7 +22,7 @@ via son API HTTP.
 
 | Champ | Description |
 | --- | --- |
-| URL Goster | URL de l'instance, par exemple `https://goster.example.com` |
+| URL de l'application (`app_url`) | URL de votre instance Goster, par exemple `https://goster.example.com` |
 | Token API | Token d'un utilisateur Goster |
 
 Le token se trouve dans les paramètres de l'utilisateur Goster. Un compte

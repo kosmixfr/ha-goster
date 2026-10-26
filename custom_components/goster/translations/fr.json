@@ -5,11 +5,11 @@
         "title": "Connexion à Goster",
         "description": "Saisissez l'URL de votre serveur Goster et le token d'un utilisateur Goster. Un token administrateur débloque les capteurs CPU, mémoire, réseau et disques.",
         "data": {
-          "base_url": "URL de Goster",
+          "app_url": "URL de Goster",
           "token": "Token API"
         },
         "data_description": {
-          "base_url": "Par exemple https://goster.example.com",
+          "app_url": "Par exemple https://goster.example.com",
           "token": "Disponible dans les paramètres de votre utilisateur Goster"
         }
       },
